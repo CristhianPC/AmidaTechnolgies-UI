@@ -3,18 +3,21 @@ const endpointResponseElement = document.getElementById('endpointResponse');
 const resetButtonElement = document.getElementById('resetButton');
 
 const endpoint =
-  'https://tidesandcurrents.noaa.gov/api/datagetter?begin_date=20120101%2015:00&end_date=20120104%2015:06&range=24&units=english&time_zone=gmt&application=ports_screen&format=json';
+  'http://localhost:8081/amida/monthlyReport';
 
 formElement.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const formData = new FormData(formElement);
+  const data = { "station": formData.get('station'), "product": formData.get('product'), "dateOfService": formData.get('date') };
 
-  const url = new URL(endpoint);
-  url.searchParams.set('station', formData.get('station'));
-  url.searchParams.set('product', formData.get('product'));
-
-  const response = fetch(url.toString()).then((c) => c.json());
+  const response = fetch(endpoint, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  }).then((c) => c.json());
 
   response.then((data) => {
     const json = JSON.stringify(data, null, 2);
