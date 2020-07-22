@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amida CO-OPS </title>
+  </head>
+  <body>
+    <form>
+      <H1>Amida CO-OPS</H1>
+      <label>
+          <p>Station ID:</p>
+          <input type="text" name="station" />
+        </label>
+      <p>Option:</p>
+      <select name="product">
+        <option value="0">Water level</option>
+        <option value="1">Air temperature</option>
+        <option value="2">Water temperature</option>
+      </select>
+      <label>
+          <p>Date:</p>
+          <input type="text" name="date" />
+        </label>
+      <br />
+      <br />
+      <button>Send</button>
+      <button id="resetButton" type="reset">Reset</button>
+    </form>
+    <pre id="endpointResponse"></pre>
+    <script src="./main.js"></script>
+  </body>
+</html>
